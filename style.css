@@ -63,7 +63,7 @@ form button[type="submit"]:hover,
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 40px;
     width: 80%;
-    margin: 10px auto;
+    margin: 20px auto;
     padding: 20px;
     place-items: center;
 }
@@ -119,29 +119,57 @@ form button[type="submit"]:hover,
     -webkit-transform: translate(-50%, -50%);
     background-color: #694c69;
     border-radius: 12px;
-    width: 60%; /* Increased width */
-    height: 70%; /* Increased height */
+    width: 60%;
+    height: 70%;
     font-size: 20px;
-    overflow: auto;
+    transition: all 0.5s ease-in-out;
+    overflow-y: scroll;
+    padding: 20px;
+}
+
+.recipe-details h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.recipe-details .ingredients-list {
+    font-size: 14px; /* Small font size for ingredients */
+    list-style: disc inside;
+}
+
+.recipe-details .instructions {
+    font-size: 14px; /* Small font size for instructions */
+    margin-top: 20px;
+    line-height: 1.6;
 }
 
 .recipe-close-btn {
     background: none;
     border: none;
     color: #fff;
-    font-size: 24px;
+    font-size: 14px;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #f44336;
+    align-items: center;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
+    justify-content: center;
+    display: flex;
 }
 
-.ingredients-list {
-    font-size: 16px; /* Adjust the size as needed */
+.recipe-details::-webkit-scrollbar-thumb {
+    width: 10px;
 }
 
-.instructions {
-    font-size: 16px; /* Decreased font size for instructions */
+.recipe-details::-webkit-scrollbar-thumb {
+    background: #b5b5ba;
+    border-radius: 16px;
+    --webkit-border-radius: 16px;
 }
 
 @media screen and (max-width: 600px) {
