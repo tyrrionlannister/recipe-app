@@ -12,7 +12,7 @@
   <body>
     <header>
       <nav>
-        <h1>Recipe App</h1>
+        <h1 id="home-button">Recipe App</h1>
         <form>
           <input type="text" placeholder="Search for recipes" class="searchBox"/>
           <button type="submit" class="searchBtn">Search</button>
@@ -20,10 +20,12 @@
       </nav>
     </header>
     <main>
+      <div id="initial-view">
+        <img src="/The_Sopranos_-_Satriale's_Pork_Store.jpg" alt="Main Photo" id="main-photo" class="main-photo">
+        <h2>Search your recipes</h2>
+      </div>
       <section>
-        <div class="recipe-container">
-          <h2>Search your recipes</h2>
-        </div>
+        <div class="recipe-container"></div>
         <div class="recipe-details">
           <button type="button" class="recipe-close-btn" aria-label="Close">
             <i class="fas fa-times"></i>

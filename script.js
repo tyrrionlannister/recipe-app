@@ -3,9 +3,13 @@ const searchBtn = document.querySelector('.searchBtn');
 const recipeContainer = document.querySelector('.recipe-container');
 const recipeDetailsContent = document.querySelector('.recipe-details-content');
 const recipeCloseBtn = document.querySelector('.recipe-close-btn');
+const mainPhoto = document.getElementById('main-photo');
+const initialView = document.getElementById('initial-view');
+const homeButton = document.getElementById('home-button');
 
 // Function to get recipes
 const fetchRecipes = async (query) => {
+    initialView.style.display = 'none';  // Hide the initial view
     recipeContainer.innerHTML = "<h2>You seriously need some gabagool..</h2>";
     const data = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
     const response = await data.json();
@@ -40,8 +44,6 @@ const fetchIngredients = (meal) => {
     for (let i = 1; i <= 20; i++) {
         if (meal[`strIngredient${i}`]) {
             ingredients += `<li>${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}</li>`;
-        } else {
-            break;
         }
     }
     return ingredients;
@@ -55,16 +57,26 @@ const openRecipePopup = (meal) => {
         <h3>Instructions:</h3>
         <p class="instructions">${meal.strInstructions}</p>
     `;
-    recipeDetailsContent.parentElement.style.display = "block";
+    document.querySelector('.recipe-details').style.display = 'block';
 };
 
-searchBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    const searchInput = searchBox.value.trim();
-    fetchRecipes(searchInput);
-    //console.log("Button Clicked");
+// EventListener to close the popup
+recipeCloseBtn.addEventListener('click', () => {
+    document.querySelector('.recipe-details').style.display = 'none';
 });
 
-recipeCloseBtn.addEventListener('click', () => {
-    recipeDetailsContent.parentElement.style.display = "none";
+// EventListener for search button
+searchBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const query = searchBox.value.trim();
+    if (query) {
+        fetchRecipes(query);
+    }
+});
+
+// EventListener for home button to reset the view
+homeButton.addEventListener('click', () => {
+    initialView.style.display = 'flex';  // Show the initial view
+    recipeContainer.innerHTML = "";  // Clear any search results
+    document.querySelector('.recipe-details').style.display = 'none';  // Hide any open recipe details
 });
